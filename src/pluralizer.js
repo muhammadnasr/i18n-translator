@@ -53,7 +53,6 @@ class Pluralizer {
       '2. Preserve all variables like {{count}} in each form',
       `3. Return the result as a valid JSON object with each key being EXACTLY "${baseKey}" + suffix (e.g. "${baseKey}_zero", "${baseKey}_one", etc.)`,
       '4. Make sure the translation is grammatically correct for each plural form',
-      '5. For Arabic specifically, include all six forms as they are all used',
       '6. Do not change the base key name under any circumstances',
       '',
       'CRITICAL: Return ONLY the raw JSON object with no markdown formatting, no code blocks (```), and no explanations.'

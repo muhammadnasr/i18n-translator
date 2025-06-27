@@ -27,3 +27,4 @@ logs
 
 # Translation output files
 data/output/
+test/output/

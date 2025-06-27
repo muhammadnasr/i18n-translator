@@ -43,7 +43,7 @@ class Translator {
    * @returns {Object} - Glossary terms
    */
   async loadGlossary(language) {
-    const glossaryPath = path.join(process.cwd(), 'config', `${language}_glossary.json`);
+    const glossaryPath = path.join(process.cwd(), 'config', 'glossary', `${language}.json`);
     try {
       return await this.loadJsonFile(glossaryPath);
     } catch (error) {
@@ -58,7 +58,7 @@ class Translator {
    * @returns {Object} - Style guide
    */
   async loadStyleGuide(language) {
-    const stylePath = path.join(process.cwd(), 'config', `${language}_style_guide.json`);
+    const stylePath = path.join(process.cwd(), 'config', 'style_guide', `${language}.json`);
     try {
       return await this.loadJsonFile(stylePath);
     } catch (error) {
