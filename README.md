@@ -52,6 +52,9 @@ i18n-translator/
 │   ├── glossary/            # Glossary files
 │   │   ├── ar.json          # Arabic glossary
 │   │   └── fr.json          # French glossary
+│   ├── plural_rules/        # Plural rules configuration
+│   │   ├── ar.json          # Arabic plural rules
+│   │   └── fr.json          # French plural rules
 │   └── style_guide/         # Style guide files
 │       ├── ar.json          # Arabic style guide
 │       └── fr.json          # French style guide
