@@ -1,0 +1,26 @@
+{
+  "instructions": [
+    "For Arabic specifically:",
+    "1. For _zero (0), use the singular form with {{count}}, e.g. '{{count}} خطأ'",
+    "2. For _two (dual form), use the special dual form WITHOUT the {{count}} variable, e.g. 'خطآن'",
+    "3. For _few (3-10), use the plural form with {{count}}, e.g. '{{count}} أخطاء'",
+    "4. For _many (11+), use the appropriate form with {{count}}, e.g. '{{count}} خطأ'",
+    "5. For _other (fallback), use the same form as _many"
+  ],
+  "examples": {
+    "mistake": {
+      "mistake_zero": "{{count}} خطأ",
+      "mistake_two": "خطآن",
+      "mistake_few": "{{count}} أخطاء",
+      "mistake_many": "{{count}} خطأ",
+      "mistake_other": "{{count}} خطأ"
+    },
+    "book": {
+      "book_zero": "{{count}} كتاب",
+      "book_two": "كتابان",
+      "book_few": "{{count}} كتب",
+      "book_many": "{{count}} كتابًا",
+      "book_other": "{{count}} كتابًا"
+    }
+  }
+}

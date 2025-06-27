@@ -1,4 +1,6 @@
 const chalk = require('chalk');
+const fs = require('fs-extra');
+const path = require('path');
 
 /**
  * Handles pluralization for different languages
@@ -10,6 +12,33 @@ class Pluralizer {
    */
   constructor(openaiClient) {
     this.openai = openaiClient;
+    this.pluralRulesCache = {};
+  }
+  
+  /**
+   * Load plural rules for a specific language
+   * @param {string} language - Target language code
+   * @returns {Object|null} - Plural rules for the language or null if not found
+   */
+  async loadPluralRules(language) {
+    // Return from cache if available
+    if (this.pluralRulesCache[language]) {
+      return this.pluralRulesCache[language];
+    }
+    
+    const rulesPath = path.join(process.cwd(), 'config', 'plural_rules', `${language}.json`);
+    try {
+      const rules = await fs.readJson(rulesPath);
+      this.pluralRulesCache[language] = rules;
+      return rules;
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        console.log(chalk.yellow(`No plural rules found for ${language}. Using default rules.`));
+        return null;
+      }
+      console.error(chalk.red(`Error loading plural rules for ${language}: ${error.message}`));
+      return null;
+    }
   }
 
   /**
@@ -32,6 +61,31 @@ class Pluralizer {
     
     console.log(chalk.blue(`Generating plural forms for key: ${baseKey} in ${language}`));
     
+    // Load language-specific plural rules
+    const pluralRules = await this.loadPluralRules(language);
+    
+    // Add language-specific instructions from the rules file
+    let languageSpecificInstructions = '';
+    let examplesInstructions = '';
+    
+    if (pluralRules) {
+      if (pluralRules.instructions && pluralRules.instructions.length > 0) {
+        languageSpecificInstructions = pluralRules.instructions.join('\n');
+      }
+      
+      if (pluralRules.examples) {
+        const exampleEntries = Object.entries(pluralRules.examples);
+        if (exampleEntries.length > 0) {
+          examplesInstructions = [
+            'Examples of correct plural forms:',
+            ...exampleEntries.map(([exampleKey, forms]) => {
+              return `${exampleKey}: ${JSON.stringify(forms, null, 2)}`;
+            })
+          ].join('\n');
+        }
+      }
+    }
+    
     // Construct the prompt for plural forms
     const prompt = [
       `I need to create plural forms for the following translation in ${language}:`,
@@ -42,18 +96,19 @@ class Pluralizer {
       '',
       `For ${language}, generate all appropriate plural forms using the following suffixes:`,
       '- _zero (for zero items)',
-      '- _one (for exactly one item)',
       '- _two (for exactly two items, if applicable in the language)',
       '- _few (for a few items, if applicable in the language)',
       '- _many (for many items, if applicable in the language)',
       '- _other (for all other cases)',
       '',
+      languageSpecificInstructions ? `${languageSpecificInstructions}\n` : '',
+      examplesInstructions ? `${examplesInstructions}\n` : '',
       'Important:',
       '1. Only include plural forms that are grammatically necessary in the target language',
-      '2. Preserve all variables like {{count}} in each form',
+      '2. Preserve all variables like {{count}} in each form (except where noted in language-specific instructions)',
       `3. Return the result as a valid JSON object with each key being EXACTLY "${baseKey}" + suffix (e.g. "${baseKey}_zero", "${baseKey}_one", etc.)`,
       '4. Make sure the translation is grammatically correct for each plural form',
-      '6. Do not change the base key name under any circumstances',
+      '5. Do not change the base key name under any circumstances',
       '',
       'CRITICAL: Return ONLY the raw JSON object with no markdown formatting, no code blocks (```), and no explanations.'
     ].join('\n');

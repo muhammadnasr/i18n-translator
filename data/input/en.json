@@ -15,5 +15,9 @@
   "shouldLabelAudio": "Allow AI training",
   "shouldCollectAudioDetail": "Tarteel securely stores your audio in the cloud to provide you with unique features such as replaying mistakes, listening to your audio, and sharing audio. If you disable this setting, you will lose access to these features. This setting is not applied retroactively.",
   "mistakeCount_one": "{{count}} Mistake",
-  "mistakeCount_other": "{{count}} Mistakes"
+  "mistakeCount_other": "{{count}} Mistakes",
+  "apple_one": "{{count}} Apple",
+  "apple_other": "{{count}} Apples"
+
+
 }

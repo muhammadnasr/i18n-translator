@@ -165,6 +165,8 @@ class Translator {
         const translatedText = await this.translateString(value, targetLanguage, glossary, styleGuide);
         
         // Check if this is a plural form key ending with _other and containing variables
+        // here we only expand "other since our source is always English (which has 2 plural forms, one and other)
+        // one is translated normally as a normal key
         if (this.pluralizer.isPluralKey(key, value)) {
           console.log(chalk.blue(`Detected plural key: ${key}`));
           
