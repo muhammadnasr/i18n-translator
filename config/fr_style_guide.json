@@ -1,0 +1,16 @@
+{
+  "tone": "Formel mais chaleureux",
+  "audience": "Francophones musulmans intéressés par l'étude du Coran",
+  "formatting": {
+    "dates": "Utiliser la terminologie du calendrier hégirien le cas échéant",
+    "numbers": "Utiliser les chiffres arabes standards (123) et non les chiffres orientaux",
+    "direction": "Texte de gauche à droite, ponctuation française avec espaces avant les deux-points, point-virgule, etc."
+  },
+  "special_instructions": [
+    "Maintenir les formules de respect islamiques comme ﷺ après le nom du Prophète Muhammad",
+    "Utiliser un langage inclusif lorsque c'est possible",
+    "Préférer le français standard plutôt que des expressions régionales",
+    "Garder les termes techniques de l'interface utilisateur cohérents dans toute l'application",
+    "Pour les termes religieux spécifiques, privilégier la translittération plutôt que la traduction quand c'est la norme"
+  ]
+}
