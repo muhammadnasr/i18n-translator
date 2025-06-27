@@ -1,0 +1,11 @@
+{
+  "greeting": "\"مرحبًا، أهلاً بكم في تطبيقنا!\"",
+  "farewell": "شكرًا لاستخدام خدمتنا.",
+  "simpleVariable": "\"مرحبًا {{username}}، كيف حالك اليوم؟\"",
+  "count_one": "{{count}} عنصر",
+  "count_zero": "{{count}} عناصر",
+  "count_two": "{{count}} عنصرين",
+  "count_few": "{{count}} عناصر",
+  "count_many": "{{count}} عنصرًا",
+  "count_other": "{{count}} عنصر"
+}
