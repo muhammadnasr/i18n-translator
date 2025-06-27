@@ -1,0 +1,15 @@
+{
+  "tone": "Formal but warm and inviting",
+  "audience": "Arabic-speaking Muslims interested in Quranic study",
+  "formatting": {
+    "dates": "Use Hijri calendar terminology where appropriate",
+    "numbers": "Use Arabic numerals (١٢٣) for standalone numbers, but keep {{count}} variables as is",
+    "direction": "Right-to-left text flow, ensure proper punctuation placement"
+  },
+  "special_instructions": [
+    "Maintain Islamic honorifics like ﷺ after Prophet Muhammad's name",
+    "Use gender-neutral language where possible",
+    "Prefer Modern Standard Arabic (فصحى) over colloquial dialects",
+    "Keep technical UI terms consistent throughout the application"
+  ]
+}

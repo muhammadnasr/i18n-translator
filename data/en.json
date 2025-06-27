@@ -1,0 +1,19 @@
+{
+  "settingsLockRecitationToCurrentPageDescription": "Prevent jumping to another page when starting a recitation session.",
+  "dhulHijjahTitle": "From Eid\nto Eid",
+  "dhulHijjahLongDescription": "All of us pour our hearts into the Qur'an during Ramadan, only to lose that connection as soon as Eid arrives. Life gets busy, and the habits we built start to slip away. This challenge is designed to change that.\n\nBy setting a clear, manageable goal — completing a khatm between Eid al-Fitr and Eid al-Adha. We're creating a bridge from one sacred season to the next.\n\nIt's about consistency, not intensity. A small daily effort that keeps the Qur'an alive in our hearts, long after Ramadan ends.\n\n\"The most beloved deeds to Allah are those that are consistent, even if they are small.\"\n\nProphet Muhammad ﷺ (Bukhari & Muslim)",
+  "shabanHighActivityUpsellDescription": "Your Quran journey flourished during Sha'ban with Tarteel Premium. Don't lose this beautiful momentum - upgrade now to rekindle and strengthen your relationship with Allah's words.",
+  "alnufais": "Ahmad Alnufais",
+  "intakeFormOtherPlaceholder": "Please specify...",
+  "tajweedGuideDescription": "Tajweed is the set of rules governing the correct pronunciation and articulation of the Quranic text during recitation.",
+  "memorizeMoreMessage1": "Salam {{username}},\nWelcome to your {{trialDuration}} day free trial of Tarteel Premium!",
+  "mistakeFeedbackEducationBody": "You've enabled Mistake Sounds, but Mistake Detection is disabled in Recitation Settings.",
+  "switchToEmailLoginInstruction": "Enter your email:",
+  "modelBetaTestingModelSelected": "✅ Selected {{modelName}}",
+  "cancelAlimProgramMessage": "Canceling your Alim Program subscription will result in the loss of all Premium features.",
+  "leaveFamilyPlanError": "Failed to leave family plan.\nPlease try again in a few seconds.\nIf the issue persists, please contact support@tarteel.ai",
+  "shouldLabelAudio": "Allow AI training",
+  "shouldCollectAudioDetail": "Tarteel securely stores your audio in the cloud to provide you with unique features such as replaying mistakes, listening to your audio, and sharing audio. If you disable this setting, you will lose access to these features. This setting is not applied retroactively.",
+  "mistakeCount_one": "{{count}} Mistake",
+  "mistakeCount_other": "{{count}} Mistakes"
+}
