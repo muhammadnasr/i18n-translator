@@ -100,39 +100,50 @@ Style guides are JSON objects with guidelines for translation. Place them in the
 }
 ```
 
+## Models Used
+
+### Translation Model
+
+The system uses OpenAI's GPT-3.5-Turbo model for translating strings. This model was chosen for translations because:
+
+- It provides good quality translations at a lower cost compared to GPT-4
+- It has faster response times, which is important for batch processing many strings
+- For straightforward translation tasks with clear context and instructions, it performs adequately
+
+The temperature is set to 0.3 to ensure consistent and deterministic translations that strictly follow glossaries and style guides.
+
+### Pluralization Model
+
+For pluralization, the system uses OpenAI's GPT-4 model. This more advanced model was chosen for pluralization because:
+
+- Pluralization requires deeper linguistic understanding of grammatical rules
+- GPT-4 has better capabilities for handling complex language-specific plural forms
+- The accuracy of plural forms is critical for grammatical correctness
+- Pluralization requests are less frequent than translation requests
+
 ## Pluralization
 
-The translator automatically detects keys ending with `_other` that contain variables (like `{{count}}`) and expands them into all appropriate plural forms for the target language.
+The translator automatically detects keys ending with `_other` that contain variables (like `{{count}}`) and expands them into all appropriate plural forms for the target language. 
+Since we are always translating from English which only have 2 plural forms (one and other), we keep keys ending with `_one` intact and expand `_other` to all other plural forms.
 
-For example, if your source English file has:
+### Plural Rules Configuration
 
-```json
-{
-  "count_one": "{{count}} item",
-  "count_other": "{{count}} items"
-}
-```
-
-When translating to Arabic (which has six plural forms), it will generate:
+Pluralization rules for each language are defined in separate configuration files located in the `config/plural_rules/` directory. Each language has its own JSON file (e.g., `ar.json`, `fr.json`) with the following structure:
 
 ```json
 {
-  "count_zero": "{{count}} عناصر",
-  "count_one": "{{count}} عنصر",
-  "count_two": "{{count}} عنصرين",
-  "count_few": "{{count}} عناصر",
-  "count_many": "{{count}} عنصرًا",
-  "count_other": "{{count}} عنصر"
+  "instructions": [
+    "Language-specific pluralization instructions",
+    "More instructions..."
+  ],
+  "examples": {
+    "example_key": {
+      "example_key_zero": "Example for zero form",
+      "example_key_many": "Example for many form",
+      "example_key_other": "Example for other form"
+    }
+  }
 }
 ```
 
-And for French (which has two plural forms):
-
-```json
-{
-  "count_one": "{{count}} article",
-  "count_other": "{{count}} articles"
-}
-```
-
-The system uses OpenAI's GPT-4 model to generate grammatically correct plural forms specific to each language.
+These configuration files are loaded by the pluralizer and included in the prompt sent to OpenAI's GPT-4 model, which generates grammatically correct plural forms specific to each language. This approach allows for easy maintenance and extension of pluralization rules without modifying the code.
