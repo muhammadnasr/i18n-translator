@@ -1,14 +1,24 @@
 {
   "instructions": [
     "For French specifically:",
-    "1. For _zero, French typically uses the plural form, e.g. '0 erreurs'",
-    "2. For _other (2+), use the plural form with {{count}}, e.g. '{{count}} erreurs'"
+    "1. For _zero (0): Use singular form, e.g. '0 jour'",
+    "2. For _many (1000000 and above, when the number is exactly divisible by 1000000): Use singular with 'de', e.g. '1 000 000 de jours', '1 M de jours'",
+    "3. For _other (2-999999, and all other cases): Use plural form, e.g. '2 jours', '100 jours', '2,0 jours'"
   ],
   "examples": {
+    "day": {
+      "day_zero": "{{count}} jour",
+      "day_many": "{{count}} de jours",
+      "day_other": "{{count}} jours"
+    },
     "mistake": {
+      "mistake_zero": "{{count}} erreur",
+      "mistake_many": "{{count}} de erreurs",
       "mistake_other": "{{count}} erreurs"
     },
     "book": {
+      "book_zero": "{{count}} livre",
+      "book_many": "{{count}} de livres",
       "book_other": "{{count}} livres"
     }
   }

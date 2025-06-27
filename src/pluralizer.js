@@ -89,7 +89,6 @@ class Pluralizer {
     // Construct the prompt for plural forms
     const prompt = [
       `I need to create plural forms for the following translation in ${language}:`,
-      `Original English (singular): "${value.replace('_other', '_one')}"`,
       `Original English (plural): "${value}"`,
       `Translated plural form (${language}): "${translatedValue}"`,
       `Base key to use: "${baseKey}"`,
