@@ -96,11 +96,14 @@ class Translator {
 
     try {
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4',
+        model: 'gpt-3.5-turbo',
         messages: [
           { role: 'system', content: 'You are a professional translator with expertise in localization.' },
           { role: 'user', content: prompt }
         ],
+        // Lower temperature (0.3) ensures more deterministic and consistent translations
+        // This reduces creativity and randomness, which is ideal for accurate localization
+        // that strictly follows glossaries and style guides
         temperature: 0.3,
         max_tokens: 1000
       });
