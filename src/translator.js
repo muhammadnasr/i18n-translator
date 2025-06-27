@@ -126,6 +126,10 @@ class Translator {
   async translateFile(sourceLanguage, targetLanguage, sourceFilePath, targetFilePath) {
     console.log(chalk.blue(`Translating from ${sourceLanguage} to ${targetLanguage}...`));
     
+    // Ensure the output directory exists
+    const outputDir = path.dirname(targetFilePath);
+    await fs.ensureDir(outputDir);
+    
     // Load source and target files
     const sourceStrings = await this.loadJsonFile(sourceFilePath);
     const existingTranslations = await this.loadJsonFile(targetFilePath);

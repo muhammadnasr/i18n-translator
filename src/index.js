@@ -19,7 +19,8 @@ program
   .description('Translate strings from source language to target language(s)')
   .requiredOption('-s, --source <language>', 'Source language code (e.g., en)')
   .requiredOption('-t, --target <languages>', 'Comma-separated list of target language codes (e.g., ar,fr,es)')
-  .option('-d, --data-dir <directory>', 'Directory containing language files', 'data')
+  .option('-i, --input-dir <directory>', 'Directory containing source language files', 'data/input')
+  .option('-o, --output-dir <directory>', 'Directory for output translated files', 'data/output')
   .action(async (options) => {
     try {
       // Validate OpenAI API key
@@ -31,10 +32,11 @@ program
       const translator = new Translator(process.env.OPENAI_API_KEY);
       const sourceLanguage = options.source;
       const targetLanguages = options.target.split(',');
-      const dataDir = path.resolve(process.cwd(), options.dataDir);
+      const inputDir = path.resolve(process.cwd(), options.inputDir);
+      const outputDir = path.resolve(process.cwd(), options.outputDir);
       
       // Validate source file exists
-      const sourceFilePath = path.join(dataDir, `${sourceLanguage}.json`);
+      const sourceFilePath = path.join(inputDir, `${sourceLanguage}.json`);
       if (!await fs.pathExists(sourceFilePath)) {
         console.error(chalk.red(`Error: Source file ${sourceFilePath} does not exist`));
         process.exit(1);
@@ -42,7 +44,7 @@ program
       
       // Process each target language
       for (const targetLanguage of targetLanguages) {
-        const targetFilePath = path.join(dataDir, `${targetLanguage}.json`);
+        const targetFilePath = path.join(outputDir, `${targetLanguage}.json`);
         console.log(chalk.blue(`\nProcessing translation from ${sourceLanguage} to ${targetLanguage}...`));
         
         try {
